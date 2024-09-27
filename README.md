@@ -50,6 +50,9 @@ It is tailored to meet the unique needs of both small and large hospitality busi
 ## Reservation List
 ![ReservationList Screenshot](https://github.com/rconcellado/Edsan-Booking/blob/main/2024-09-27%2014_26_48--%20EdsanBooking.png?raw=true)
 
+## CheckIn List
+![CheckInList Screenshot](https://github.com/rconcellado/Edsan-Booking/blob/main/2024-09-27%2014_41_36--%20EdsanBooking.png?raw=true)
+
 Usage
 Login:
 The system provides user authentication. Once logged in, users can manage rooms, guest check-ins, and payments.
