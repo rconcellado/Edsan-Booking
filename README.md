@@ -38,7 +38,7 @@ It is tailored to meet the unique needs of both small and large hospitality busi
 
 ## Screenshots
 
-![HomePage]()
+![HomePage](https://github.com/rconcellado/Edsan-Booking/blob/main/2024-09-27%2013_41_35-.png?raw=true)
 
 Usage
 Login:
