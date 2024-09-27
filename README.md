@@ -38,6 +38,7 @@ It is tailored to meet the unique needs of both small and large hospitality busi
 
 ## Screenshots
 
+![HomePage]()
 
 Usage
 Login:
