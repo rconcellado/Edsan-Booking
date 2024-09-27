@@ -1,0 +1,80 @@
+﻿@model EdsanBooking.Models.Guest
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Edit Guest - @Model.GuestId</h2>
+
+        <form asp-action="Edit" method="post">
+            <div class="form-group">
+                <label asp-for="GuestType">Guest Type</label>
+                <select asp-for="GuestType" class="form-control" id="guestTypeDropdown">
+                    <option value="Individual">Individual</option>
+                    <option value="Company">Company</option>
+                </select>
+                <span asp-validation-for="GuestType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GuestId">Guest ID</label>
+                <input asp-for="GuestId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="GName">First Name</label>
+                <input asp-for="GName" class="form-control" id="firstNameInput" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LName">Last Name</label>
+                <input asp-for="LName" class="form-control" id="lastNameInput" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Company">Company</label>
+                <input asp-for="Company" class="form-control" id="companyInput" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNo">Contact Number</label>
+                <input asp-for="ContactNo" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address">Address</label>
+                <input asp-for="Address" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-margin">Save</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var guestTypeDropdown = document.getElementById('guestTypeDropdown');
+        var firstNameInput = document.getElementById('firstNameInput');
+        var lastNameInput = document.getElementById('lastNameInput');
+        var companyInput = document.getElementById('companyInput');
+
+        function updateFieldsBasedOnGuestType() {
+            var selectedGuestType = guestTypeDropdown.value;
+            if (selectedGuestType === 'Individual') {
+                companyInput.value = 'Not applicable';
+                companyInput.readOnly = true;
+                // firstNameInput.value = '';
+                firstNameInput.readOnly = false;
+                // lastNameInput.value = '';
+                lastNameInput.readOnly = false;
+            } else if (selectedGuestType === 'Company') {
+                firstNameInput.value = 'Not applicable';
+                firstNameInput.readOnly = true;
+                lastNameInput.value = 'Not applicable';
+                lastNameInput.readOnly = true;
+                companyInput.value = '';
+                companyInput.readOnly = false;
+            }
+        }
+
+        // Update the fields based on the initial selection
+        updateFieldsBasedOnGuestType();
+
+        // Add event listener to update fields when the guest type changes
+        guestTypeDropdown.addEventListener('change', updateFieldsBasedOnGuestType);
+    });
+</script>

@@ -1,0 +1,373 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\EdsanBooking.bundle.scp.css",
+      "PackagePath": "staticwebassets\\EdsanBooking.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\css\\custom\\custom-form-styles.css",
+      "PackagePath": "staticwebassets\\css\\custom\\custom-form-styles.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\icons8-home-94.png",
+      "PackagePath": "staticwebassets\\icons8-home-94.png"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\4284558.jpg",
+      "PackagePath": "staticwebassets\\images\\4284558.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\5869066.jpg",
+      "PackagePath": "staticwebassets\\images\\5869066.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\Edsan Transient House and Inland Resort Management System.png",
+      "PackagePath": "staticwebassets\\images\\Edsan Transient House and Inland Resort Management System.png"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture2.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture2.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture3.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture3.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture4.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture4.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture_ac.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture_ac.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture_ac2.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture_ac2.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture_ac3.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture_ac3.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\bedpicture_ac4.jpg",
+      "PackagePath": "staticwebassets\\images\\bedpicture_ac4.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture2.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture2.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture3.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture3.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture4.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture4.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture_ac.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture_ac.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture_ac2.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture_ac2.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture_ac3.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture_ac3.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\rooms\\bedpicture_ac4.jpg",
+      "PackagePath": "staticwebassets\\images\\rooms\\bedpicture_ac4.jpg"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\images\\vecteezy_ai-generated-laptop-screen-mockup-on-wooden-desk-living_39400788.png",
+      "PackagePath": "staticwebassets\\images\\vecteezy_ai-generated-laptop-screen-mockup-on-wooden-desk-living_39400788.png"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\AddGuests.js",
+      "PackagePath": "staticwebassets\\js\\AddGuests.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\GuestSearch.js",
+      "PackagePath": "staticwebassets\\js\\GuestSearch.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\ModalTrigger.js",
+      "PackagePath": "staticwebassets\\js\\ModalTrigger.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\ResortDetails.js",
+      "PackagePath": "staticwebassets\\js\\ResortDetails.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\TransientDetails.js",
+      "PackagePath": "staticwebassets\\js\\TransientDetails.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\EdsanBooking\\EdsanBooking\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EdsanBooking.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.EdsanBooking.props",
+      "PackagePath": "build\\EdsanBooking.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.EdsanBooking.props",
+      "PackagePath": "buildMultiTargeting\\EdsanBooking.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.EdsanBooking.props",
+      "PackagePath": "buildTransitive\\EdsanBooking.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

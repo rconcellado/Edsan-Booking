@@ -1,0 +1,54 @@
+﻿@model AddGuestsViewModel
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+
+        <h4>@(ViewData["Title"] ?? "Manage Guests") for Reservation @Model.ReservationId</h4>
+
+        <!-- Hidden field for ReservationId -->
+        <input type="hidden" asp-for="ReservationId" value="@Model.ReservationId"/>
+
+        <form asp-action="AddOrEditGuests" method="post">
+            <input type="hidden" asp-for="CheckInId" />
+            <input type="hidden" asp-for="ReservationId" />
+            <input type="hidden" asp-for="DisplayLabel" />
+
+            @for (int i = 0; i < Model.GuestDetails.Count; i++)
+            {
+                    <div>
+                        <h5>Guest @(i + 1)</h5>
+                        <div>
+                            <label>First Name</label>
+                            <input type="text" asp-for="GuestDetails[i].FirstName" class="form-control" />
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input type="text" asp-for="GuestDetails[i].LastName" class="form-control" />
+                        </div>
+                        <div>
+                            <label>Preference</label>
+                            <select asp-for="GuestDetails[i].Preference" class="form-control">
+                                <option value="Shared">Shared</option>
+                                <option value="Solo">Solo</option>
+                            </select>
+                        </div>
+                            <input type="hidden" asp-for="GuestDetails[i].RoomId" value="GuestDetails[i].RoomId" />
+                        <hr />
+                    </div>
+            }
+
+            <button type="submit" class="btn btn-primary btn-margin">Save Guests</button>
+            <a href="@Url.Action("EnterPayment", "Payment", new { id = @Model.ReservationId })" class="btn btn-secondary btn-margin">Skip</a>
+        </form>
+    </div>
+</div>

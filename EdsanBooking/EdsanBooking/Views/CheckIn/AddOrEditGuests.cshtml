@@ -1,0 +1,105 @@
+﻿@model AddGuestsViewModel
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+        <h4>@ViewData["Title"] for @Model.DisplayLabel: @Model.DisplayId</h4>
+
+        <form asp-action="AddOrEditGuests" method="post">
+            <!-- Hidden field for ReservationId -->
+            <input type="hidden" asp-for="CheckInId" />
+            <input type="hidden" asp-for="ReservationId" />
+            <input type="hidden" asp-for="DisplayLabel" />
+
+            @for (int i = 0; i < Model.GuestDetails.Count; i++)
+            {
+                    <div>
+                        <h5>Guest @(i + 1)</h5>
+                        <div>
+                            <label>First Name</label>
+                            <input type="text" asp-for="GuestDetails[i].FirstName" class="form-control" />
+                        </div>
+                        <div>
+                            <label>Last Name</label>
+                            <input type="text" asp-for="GuestDetails[i].LastName" class="form-control" />
+                        </div>
+                        <div>
+                            <label>Room</label>
+                            <div class="input-group">
+                                <!-- Room ID textbox -->
+                                <input type="text" asp-for="GuestDetails[i].RoomId" class="form-control" readonly />
+                                <button type="button" class="btn btn-secondary" onclick="openRoomSearchModal(@i)">
+                                    Search Room
+                                </button>
+                            </div>
+                        </div>
+                            <input type="hidden" asp-for="GuestDetails[i].Preference" value="GuestDetails[i].Preference" />
+                        <hr />
+                    </div>
+            }
+
+            <button type="submit" class="btn btn-primary btn-margin">Save Guests</button>
+            <a href="@Url.Action("EnterPayment", "Payment", new { id = @Model.DisplayId })" class="btn btn-secondary btn-margin">Skip</a>
+        </form>
+    </div>
+</div>
+
+<!-- Include the Room Search Modal -->
+@{
+    await Html.RenderPartialAsync("_RoomSearchModal");
+}
+
+<script>
+    function openRoomSearchModal(guestIndex) {
+        // Store the guest index in the modal's data attribute to use later
+        $('#roomSearchModal').data('guest-index', guestIndex);
+
+        // Open the modal using Bootstrap's modal method
+        $('#roomSearchModal').modal('show');
+    }
+
+    function loadRooms(pageNumber) {
+        var featureName = $('#featureName').val();
+        var typeName = $('#typeName').val();
+        var hourType = $('#hourType').val();
+
+        $.ajax({
+            url: '@Url.Action("SearchRooms", "CheckIn")',
+            type: 'GET',
+            data: {
+                checkInType: 'Transient',
+                statusName: 'Available',
+                featureName: featureName,
+                typeName: typeName,
+                hourType: hourType,
+                pageNumber: pageNumber
+            },
+            success: function (data) {
+                $('#roomResults').html(data);
+
+                // Re-attach click event to the Select button after results are loaded
+                $('.select-room').off('click').on('click', function () {
+                    var roomId = $(this).data('room-id');
+                    var guestIndex = $('#roomSearchModal').data('guest-index');
+
+                    var inputElement = $('input[name="GuestDetails[' + guestIndex + '].RoomId"]');
+                    inputElement.val(roomId);
+
+                    $('#roomSearchModal').modal('hide');
+                });
+            },
+            error: function () {
+                alert("An error occurred while searching for rooms.");
+            }
+        });
+    }
+</script>

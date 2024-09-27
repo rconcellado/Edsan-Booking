@@ -1,0 +1,73 @@
+﻿@model PaymentViewModel
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<div class="form-container">
+    <div class="form-box">
+
+        <!-- Dynamically display the appropriate ID label and value -->
+        <h4>Payment for @Model.DisplayLabel: @Model.DisplayId</h4>
+
+        <form asp-action="EnterPayment" asp-controller="Payment" method="post">
+            <input type="hidden" asp-for="PayType" />
+            <input type="hidden" asp-for="Location" />
+            <input type="hidden" asp-for="CheckInId" />
+            <input type="hidden" asp-for="ReservationId" /> <!-- Hidden field for ReservationId -->
+            <input type="hidden" asp-for="ExcessPayment" /> <!-- Hidden field for ExcessPayment if needed -->
+
+            <div class="form-group">
+                <label asp-for="ChargeAmount"></label>
+                <input asp-for="ChargeAmount" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PaymentAmount">Payment Made</label>
+                <input asp-for="PaymentAmount" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DiscountAmount"></label>
+                <input asp-for="DiscountAmount" class="form-control" />
+                <span asp-validation-for="DiscountAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CurrentPayment">Current Payment</label>
+                <input id="CurrentPayment" name="CurrentPayment" class="form-control" />
+                <span asp-validation-for="CurrentPayment" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RemainingBalance">Remaining Balance</label>
+                <input asp-for="RemainingBalance" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-margin">Save Payment</button>
+                <a href="@Url.Action("CheckInList", "CheckIn")" class="btn btn-secondary btn-margin">Back to List</a> <!-- Back to List button -->
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+        <script>
+            $(document).ready(function() {
+                // Calculate the remaining balance when Current Payment is entered
+                $('#CurrentPayment').on('input', function() {
+                    var chargeAmount = parseFloat($('#ChargeAmount').val()) || 0;
+                    var paymentMade = parseFloat($('#PaymentAmount').val()) || 0;
+                    var currentPayment = parseFloat($(this).val()) || 0;
+                    var discountAmount = parseFloat($('#DiscountAmount').val()) || 0;
+
+                    var remainingBalance = chargeAmount - (paymentMade + currentPayment + discountAmount);
+                    $('#RemainingBalance').val(remainingBalance.toFixed(2));
+                });
+            });
+        </script>
+}

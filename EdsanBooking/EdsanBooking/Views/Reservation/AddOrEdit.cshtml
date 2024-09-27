@@ -1,0 +1,281 @@
+﻿@model CheckInViewModel
+
+@{
+    ViewData["Title"] = Model.bNew == true ? "Create Reservation" : $"Edit Reservation - {Model.ReservationId}";
+}
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+        <h4>@(Model.bNew == true ? "Create Reservation" : $"Edit Reservation - {Model.ReservationId}")</h4>
+
+        <form asp-action="AddOrEdit" asp-route-id="@Model.ReservationId" method="post">
+            <input type="hidden" asp-for="CheckInId" value="@Model.CheckInId ?? "N/A"" />
+            <input type="hidden" asp-for="Company" />
+            <input type="hidden" asp-for="FirstName" />
+            <input type="hidden" asp-for="LastName" />
+            <input type="hidden" asp-for="CheckInType" />
+            <input type="hidden" asp-for="GuestType" />
+
+
+            <div class="form-group">
+                <label asp-for="ReservationId" class="control-label">Reservation ID</label>
+                <input asp-for="ReservationId" class="form-control" readonly />
+            </div>
+
+            <!-- Guest ID with search functionality -->
+            <div class="form-group">
+                <label asp-for="GuestId" class="control-label">Guest ID</label>
+                <div class="input-group">
+                    <input asp-for="GuestId" class="form-control" readonly />
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#guestSearchModal">Search</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReservationType" class="control-label">Reservation Type</label>
+                @Html.DropDownListFor(model => model.ReservationType, new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Resort", Value = "Resort" },
+                    new SelectListItem { Text = "Transient", Value = "Transient" }
+                }, "Select Type", new { @class = "form-control", @id = "ReservationType" })
+            </div>
+
+            <!-- Transient Details Section -->
+            <div id="transientDetailsSection" style="display:none;">
+                <h5>Transient Details</h5>
+                @if (Model.bNew)
+                {
+                        <div class="form-group">
+                            <label for="featureName">Feature Name</label>
+                            <select id="featureName" name="featureName" class="form-control">
+                                <option value="Aircon">Aircon</option>
+                                <option value="Ceiling Fan">Ceiling Fan</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="typeName">Type Name</label>
+                            <select id="typeName" name="typeName" class="form-control">
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hourType">Hour Type</label>
+                            <select id="hourType" name="hourType" class="form-control">
+                                <option value="6">6</option>
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                }
+                else
+                {
+                        <div class="form-group">
+                            <label asp-for="FeatureName">Feature Name</label>
+                            <input asp-for="FeatureName" class="form-control" />
+                            <span asp-validation-for="FeatureName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TypeName">Type Name</label>
+                            <input asp-for="TypeName" class="form-control" />
+                            <span asp-validation-for="TypeName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="HourType">Hour Type</label>
+                            <input asp-for="HourType" class="form-control" type="number" />
+                            <span asp-validation-for="HourType" class="text-danger"></span>
+                        </div>
+                }
+            </div>
+
+            <!-- Resort Details Section -->
+            <div id="resortDetailsSection" style="display:none;">
+                <h5>Resort Details</h5>
+                @if (Model.bNew)
+                {
+                        <div class="form-group">
+                            <label for="pkgName">Package Name</label>
+                            <select id="pkgName" name="pkgName" class="form-control">
+                                <option value="Function Hall">Function Hall</option>
+                                <option value="Room w/ Pool Access">Room w/ Pool Access</option>
+                                <option value="Exclusive">Exclusive</option>
+                                <option value="Open Cottage">Open Cottage</option>
+                            </select>
+                        </div>
+                }
+                else
+                {
+                        <div class="form-group">
+                            <label asp-for="PkgName">Package Name</label>
+                            <input asp-for="PkgName" class="form-control" />
+                            <span asp-validation-for="PkgName" class="text-danger"></span>
+                        </div>
+                }
+            </div>
+
+            <div class="form-group btn-group-custom">
+                <label asp-for="NumGuest" class="control-label">Number of Guests</label>
+                <div class="input-group">
+                    <input asp-for="NumGuest" class="form-control" />
+                </div>
+                <span asp-validation-for="NumGuest" class="text-danger"></span>
+            </div>
+
+            <!-- Date and Time Inputs -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CheckInDt" class="control-label">Check-In Date</label>
+                        <input asp-for="CheckInDt" class="form-control" type="date" />
+                        <span asp-validation-for="CheckInDt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CheckInTime" class="control-label">Check-In Time</label>
+                        <input asp-for="CheckInTime" class="form-control" type="time" />
+                        <span asp-validation-for="CheckInTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CheckOutDt" class="control-label">Check-Out Date</label>
+                        <input asp-for="CheckOutDt" class="form-control" type="date" />
+                        <span asp-validation-for="CheckOutDt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CheckOutTime" class="control-label">Check-Out Time</label>
+                        <input asp-for="CheckOutTime" class="form-control" type="time" />
+                        <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Field as Read-Only Textbox -->
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Status</label>
+                <input asp-for="Status" class="form-control" readonly value="Pending" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label">Remarks</label>
+                <textarea asp-for="Remarks" class="form-control"></textarea>
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location" class="control-label">Location</label>
+                <input asp-for="Location" class="form-control" value="@ViewContext.HttpContext.Session.GetString("Location")" readonly />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CreatedBy" class="control-label">Created By</label>
+                        <input asp-for="CreatedBy" class="form-control" readonly />
+                        <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="CreatedDt" class="control-label">Created Date</label>
+                        <input asp-for="CreatedDt" class="form-control" readonly />
+                        <span asp-validation-for="CreatedDt" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-left">
+                    <a asp-action="ReservationList" class="btn btn-link">Back to List</a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-primary btn-margin">Save and Continue</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Guest Search Modal -->
+@Html.Partial("_GuestSearchModal", new { Id = "guestSearchModal", Title = "Search Guest" })
+
+@section Scripts {
+            <script src="~/js/jquery-3.6.0.min.js"></script>
+            <script src="~/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/ModalTrigger.js"></script>
+            <script src="~/js/GuestSearch.js"></script>
+
+            <script>
+                 function searchGuests(pageNumber) {
+                    var searchQuery = $('#guestSearchInput').val();
+
+                    $.ajax({
+                        url: '@Url.Action("SearchGuests", "Reservation")',
+                        type: 'GET',
+                        data: {
+                            searchQuery: searchQuery,
+                            pageNumber: pageNumber
+                        },
+                        success: function (data) {
+                            $('#guestSearchResults').html(data);
+
+                            // Re-attach click event to the Select button after results are loaded
+                            $('.select-guest').off('click').on('click', function () {
+                                var guestId = $(this).data('guest-id');
+                                $('input[name="GuestId"]').val(guestId);
+                                $('#guestSearchModal').modal('hide');
+                            });
+                        },
+                        error: function () {
+                            alert("An error occurred while searching for guests.");
+                        }
+                    });
+                }
+                $(document).ready(function () {
+                    $('#guestSearchInput').on('input', function () {
+                    searchGuests(1); // Start search from the first page
+                    });
+
+                    // Trigger an initial search when the modal is opened
+                    $('#guestSearchModal').on('shown.bs.modal', function () {
+                        searchGuests(1);
+                    });
+
+                    $('#ReservationType').change(function () {
+                        if ($(this).val() === 'Transient') {
+                            $('#transientDetailsSection').show();
+                            $('#resortDetailsSection').hide();
+                        } else if ($(this).val() === 'Resort') {
+                            $('#transientDetailsSection').hide();
+                            $('#resortDetailsSection').show();
+                        } else {
+                            $('#transientDetailsSection').hide();
+                            $('#resortDetailsSection').hide();
+                        }
+                    });
+
+                    // Trigger change event to handle default selection
+                    $('#ReservationType').trigger('change');
+                });
+            </script>
+}

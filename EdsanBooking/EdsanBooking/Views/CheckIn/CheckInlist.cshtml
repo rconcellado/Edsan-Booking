@@ -1,0 +1,144 @@
+﻿@model PaginatedListViewModel<CheckInViewModel>
+@using EdsanBooking.Utilities;
+
+<a href="@Url.Action("AddOrEdit", "Checkin")" class="btn btn-success mb-3">
+    <i class="fas fa-plus"></i> Add Checkin
+</a>
+
+<!-- Search Form -->
+<form method="get" asp-action="Checkinlist" class="form-inline mb-4">
+    <div class="input-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search Checkin" value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@{
+    var location = ViewContext.HttpContext.Session.GetString("Location");
+}
+
+<h2>Checkin List for Location: @location</h2>
+
+<style>
+    .small-font-table th, .small-font-table td {
+        font-size: 12px; /* Adjust the size as needed */
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .small-font-table th {
+        background-color: #f8f9fa; /* Optional: Light background for headers */
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    /* Ensures buttons are horizontally aligned */
+    .action-buttons {
+        display: flex;
+        gap: 5px; /* Adjusts the space between buttons */
+    }
+</style>
+
+<table class="table table-striped small-font-table">
+    <thead>
+        <tr>
+            <th style="width: 5%;">ID</th>
+            <th style="width: 8%;">Guest ID</th>
+            <th style="width: 12%;">Guest Name</th>
+            <th style="width: 5%;">Guest No</th>
+            <th style="width: 10%;">CheckIn Date</th>
+            <th style="width: 10%;">CheckOut Date</th>
+            <th style="width: 10%;">Status</th>
+            <th style="width: 10%;">Type</th>
+            <th style="width: 30%;">Actions</th> <!-- Larger space for buttons -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var checkIn in Model.Items)
+        {
+            <tr>
+                <td>@checkIn.CheckInId</td>
+                <td>@checkIn.GuestId</td>
+                <td>
+                    @if (checkIn.Company == "Not applicable")
+                    {
+                        @(checkIn.FirstName + " " + checkIn.LastName)
+                    }
+                    else if (checkIn.Company != "Not applicable")
+                    {
+                        @checkIn.Company
+                    }
+                    else
+                    {
+                        <span>N/A</span>
+                    }
+                </td>
+                <td>@checkIn.NumGuest</td>
+                <td>@checkIn.CheckInDt.ToShortDateString()</td>
+                <td>@checkIn.CheckOutDt.ToShortDateString()</td>
+                <td>@checkIn.Status</td>
+                <td>@checkIn.CheckInType</td>
+                <td>
+                    <div class="action-buttons">
+                        <a href="@Url.Action("Details", "Pool", new { id = checkIn.CheckInId })" class="btn btn-outline-primary btn-sm">Details</a>
+                        <a href="@Url.Action("AddOrEdit", "Checkin", new { id = checkIn.CheckInId })" class="btn btn-outline-primary btn-sm">Edit</a>
+                        @if (checkIn.Status != "CheckIn")
+                        {
+                            @if (checkIn.CheckInType == "Transient")
+                            {
+                                <form asp-action="ConfirmCheckin" asp-controller="Checkin" method="post" style="display:inline;" onsubmit="return confirmCheckin();">
+                                    <input type="hidden" name="id" value="@checkIn.CheckInId" />
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">CheckIn</button>
+                                </form>
+                            }
+                            else if (checkIn.CheckInType == "Resort")
+                            {
+                                <form asp-action="ConfirmCheckin" asp-controller="Checkin" method="post" style="display:inline;" onsubmit="return confirmCheckin();">
+                                    <input type="hidden" name="id" value="@checkIn.CheckInId" />
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">Confirm</button>
+                                </form>
+                            }
+
+                            <a href="@Url.Action("Cancel", "Cancel", new { id = checkIn.CheckInId })" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                        }
+                        else
+                        {
+                            <form asp-action="ConfirmCheckout" asp-controller="Checkin" method="post" style="display:inline;" onsubmit="return confirmCheckout();">
+                                <input type="hidden" name="id" value="@checkIn.CheckInId" />
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">CheckOut</button>
+                            </form>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function confirmCheckin() {
+        return confirm("Are you sure you want to confirm this checkin?");
+    }
+</script>
+
+
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Checkinlist", new { pageNumber = Model.PageNumber - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+                            <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                                                <a class="page-link" href="@Url.Action("Checkinlist", new { pageNumber = i })">@i</a>
+                            </li>
+        }
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Checkinlist", new { pageNumber = Model.PageNumber + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,69 @@
+﻿@model UploadImagesViewModel
+
+@{
+    ViewData["Title"] = "Upload Room Images";
+}
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Upload Room Images</h2>
+
+            <form asp-action="UploadImages" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label for="featureName">Feature Name</label>
+                    <select id="featureName" name="featureName" class="form-control">
+                        <option value="Aircon">Aircon</option>
+                        <option value="Ceiling Fan">Ceiling Fan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="typeName">Type Name</label>
+                    <select id="typeName" name="typeName" class="form-control">
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="imageFile1">Upload Image 1</label>
+                    <input type="file" id="imageFile1" name="ImageFile1" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="imageFile2">Upload Image 2</label>
+                    <input type="file" id="imageFile2" name="ImageFile2" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="imageFile3">Upload Image 3</label>
+                    <input type="file" id="imageFile3" name="ImageFile3" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="imageFile4">Upload Image 4</label>
+                    <input type="file" id="imageFile4" name="ImageFile4" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Images</button>
+            </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('imageFiles').addEventListener('change', function() {
+        const fileInput = this;
+        const errorSpan = document.getElementById('fileCountError');
+
+        if (fileInput.files.length !== 4) {
+            errorSpan.style.display = 'block';
+        } else {
+            errorSpan.style.display = 'none';
+        }
+    });
+</script>

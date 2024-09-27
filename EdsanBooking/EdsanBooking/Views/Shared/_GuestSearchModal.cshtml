@@ -1,0 +1,29 @@
+﻿@model dynamic
+
+<style>
+    .small-font-table th, .small-font-table td {
+        font-size: 12px; /* Adjust the size as needed */
+    }
+</style>
+
+<div class="modal fade" id="guestSearchModal" tabindex="-1" aria-labelledby="guestSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guestSearchModalLabel">Search Guest</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="guestSearchInput" class="form-control mb-3" placeholder="Search for a guest..." />
+
+                <!-- The search results table will be dynamically loaded here -->
+                <div id="guestSearchResults">
+                    <!-- The content from _GuestSearchResults.cshtml will be injected here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

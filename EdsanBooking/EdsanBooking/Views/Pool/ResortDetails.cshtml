@@ -1,0 +1,220 @@
+﻿@model CheckInDetailsViewModel
+
+@{
+    ViewData["Title"] = "Check-In Details";
+}
+
+<div class="container mt-5">
+    <!-- Section for Check-In Details and Guest Information -->
+    <div class="row">
+        <div class="col-md-8">
+            @* <h3>Check-In Details for @Model.GuestName (@Model.CheckInId)</h3> *@
+            @* <h3>Check-In Details for @Model.GuestName  *@
+            @if (Model.ReservationId == "N/A")
+            { 
+                               <h3>Check-In Details for @Model.GuestName (@Model.CheckInId) </h3>
+            }
+            else
+            {
+                               <h3>Reservation Details for @Model.GuestName (@Model.ReservationId) </h3>
+            }
+            @* </h3> *@
+            @* <p>@Model.CheckInType - @Model.Location</p> *@
+            <div class="mt-3">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle style="color: green;"></i> Status: @Model.Status</li>
+                    <li><i class="fas fa-calendar-day"></i> Check-In Date: @Model.CheckInDt.ToString("MMMM dd, yyyy") @Model.CheckInTime.ToString(@"hh\:mm")</li>
+                    <li><i class="fas fa-calendar-day"></i> Check-Out Date: @Model.CheckOutDt.ToString("MMMM dd, yyyy") @Model.CheckOutTime.ToString(@"hh\:mm")</li>
+                    <li><i class="fas fa-users"></i> Number of Guests: @Model.NumGuest</li>
+                    <li><i class="fas fa-info-circle"></i> Remarks: @Model.Remarks</li>
+                    @if (Model.ReservationId == "N/A")
+                    { 
+                            <li><i class="fas fa-door-open"></i> Check-In Type: @Model.CheckInType</li>
+                    }
+                    else
+                    {
+                            <li><i class="fas fa-door-open"></i> Reservation Type: @Model.ReservationType</li>
+                    }
+                    <li><i class="fas fa-map-marker-alt"></i> Location: @Model.Location</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <h4>Resort Package Inclusion</h4>
+        <ul class="list-unstyled">
+                @foreach (var amenity in Model.resortAmenities)
+                {
+                    <li class="d-flex align-items-center">
+                        @if (amenity.Amenity == "Function Hall")
+                        {
+                                <i class="fas fa-building mr-2"></i>
+                                <span>Function Hall</span>
+                        }
+                        else if (amenity.Amenity == "Sound System")
+                        {
+                                <i class="fas fa-volume-up mr-2"></i>
+                                <span>Sound System</span>
+                        }
+                        else if (amenity.Amenity == "Swimming Pool Access")
+                        {
+                                <i class="fas fa-swimmer mr-2"></i>
+                                <span>Swimming Pool Access</span>
+                        }
+                        else if (amenity.Amenity == "4 rooms with aircon")
+                        {
+                                <i class="fas fa-bed mr-2"></i>
+                                <span>4 rooms with aircon</span>
+                        }
+                        else if (amenity.Amenity == "Playground")
+                        {
+                                <i class="fas fa-child mr-2"></i>
+                                <span>Playground</span>
+                        }
+                        else if (amenity.Amenity == "Basketball Court")
+                        {
+                                <i class="fas fa-basketball-ball mr-2"></i>
+                                <span>Basketball Court</span>
+                        }
+                    </li>
+                }
+        </ul>
+    </div>
+
+
+    <!-- Charges and Payment Section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4>Charges and Payment</h4>
+            <div class="mt-3">
+                @* <h5>Payment Details:</h5> *@
+                @if (Model.Payments != null && Model.Payments.Any())
+                {
+                        <table class="table table-bordered" style="font-size: 0.9em; width: 60%;">
+                            <thead>
+                                <tr>
+                                @* <th>Transaction ID</th> *@
+                                    <th style="padding: 8px;">Transaction Date</th>
+                                    <th style="padding: 8px;">Transaction Type</th>
+                                    <th style="padding: 8px;">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var payment in Model.Payments)
+                            {
+                                        <tr>
+                                    @* <td>@payment.TransactionId</td> *@
+                                            <td style="padding: 8px;">@payment.TransactionDate.ToString("MMMM dd, yyyy hh:mm tt")</td>
+                                            <td style="padding: 8px;">
+                                        @if (payment.TransactionType == "PAY")
+                                        {
+                                            @:Payment
+                                        }
+                                        else if (payment.TransactionType == "RMCHG")
+                                        {
+                                            @:Room Charge
+                                        }
+                                        else if(payment.TransactionType == "RSCHG")
+                                        {
+                                            @:Package Charge
+                                        }
+                                        else
+                                        {
+                                            @:Other
+                                        }
+                                            </td>
+                                            <td style="padding: 8px;">@payment.Amount.ToString("C")</td>
+                                        </tr>
+                            }
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="text-right" style="padding: 8px;"><strong>Total Outstanding Balance:</strong></td>
+                                    <td colspan="2" style="padding: 8px;"><strong>@Model.TotalOutstanding?.ToString("C")</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                }
+                else
+                {
+                        <p>No payment details available.</p>
+                }
+             </div>
+        </div>
+    </div>
+
+    <!-- About this Check-In Section -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            @if (Model.ReservationId == "N/A")
+            {
+                    <h4>About this Check-In</h4>
+                    <p>This check-in is for a @Model.CheckInType stay at @Model.Location. The check-in was created by @Model.CreatedBy on @Model.CreatedDt.ToString("MMMM dd, yyyy hh:mm tt").</p>
+            }
+            else
+            {
+                    <h4>About this Reservation</h4>   
+                    <p>This reservation is for a @Model.ReservationType at @Model.Location. The reservation was created by @Model.CreatedBy on @Model.CreatedDt.ToString("MMMM dd, yyyy hh:mm tt").</p>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        font-family: Arial, sans-serif;
+    }
+
+    .list-unstyled li {
+        margin-bottom: 10px;
+    }
+
+    .d-flex {
+        gap: 10px;
+    }
+
+    .p-2 {
+        padding: 10px;
+    }
+
+    .rounded-circle {
+        border: 2px solid #ccc;
+    }
+
+    h4, h3 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        margin: 0;
+        font-size: 1.2em;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .list-group-item {
+        font-size: 1.1em;
+    }
+
+    .table-bordered {
+        margin-top: 20px;
+    }
+
+    .table-bordered th, .table-bordered td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    .table-bordered th {
+        background-color: #f8f9fa;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+</style>

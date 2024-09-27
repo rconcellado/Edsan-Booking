@@ -1,0 +1,79 @@
+﻿@model EdsanBooking.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+
+    .user-type-group {
+        margin-bottom: 15px;
+        text-align: center; /* Center-align the content */
+    }
+
+    .user-type-group label {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 14px; /* Adjust font size if needed */
+    }
+
+    .user-type-group input[type="radio"] {
+        margin-right: 5px; /* Space between radio and label */
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+        <h2 class="text-center">Login</h2>
+
+        <form asp-action="Login" method="post">
+            <!-- UserType Radio Buttons (Centered) -->
+            <div class="form-group user-type-group">
+                @* <label>User Type</label><br /> *@
+                <input type="radio" asp-for="UserType" value="Guest" id="Guest" />
+                <label for="Guest">Guest</label>
+
+                <input type="radio" asp-for="UserType" value="Admin" id="Admin" />
+                <label for="Admin">Admin</label>
+
+                <span asp-validation-for="UserType" class="text-danger"></span>
+            </div>
+
+            <!-- Location Dropdown -->
+            <div class="form-group">
+                <label asp-for="Location">Location</label>
+                <select asp-for="Location" class="form-control">
+                    <option value="Champaca">Champaca</option>
+                    <option value="Mati">Mati</option>
+                    <option value="Pantukan">Pantukan</option>
+                    <option value="Upper Mintal">Upper Mintal</option>
+                </select>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <!-- Username Input -->
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-margin">Login</button>
+        </form>
+    </div>
+</div>

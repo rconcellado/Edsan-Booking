@@ -1,0 +1,384 @@
+﻿@model RoomDetailsViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.TypeName in @Model.FeatureName - Room Details</title>
+    <!-- Use Google Fonts for enhanced typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f4f6f8;
+            color: gray; /* Set all text to gray */
+            font-size: 0.9rem; /* Set the base font size smaller */
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .left-column, .right-column {
+            flex: 1;
+            padding: 10px;
+        }
+        .right-column {
+            max-width: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .main-image {
+            width: 100%;
+            height: 250px; /* Smaller height */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover; /* Ensures the image covers the entire area */
+        }
+        .thumbnail-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .thumbnail {
+            width: 100%;
+            height: 80px; /* Smaller height for thumbnails */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .room-info h1 {
+            font-size: 1.5rem; /* Heading text size set smaller */
+            color: gray;
+            margin-bottom: 10px;
+        }
+        .room-info p {
+            font-size: 0.9rem; /* Paragraph text size set smaller */
+            color: gray;
+            line-height: 1.6;
+        }
+        .room-rate {
+            font-size: 1.2rem; /* Room rate text size set smaller */
+            color: gray;
+            margin-bottom: 20px;
+        }
+        .stars {
+            color: #FFD700; /* Gold color for stars */
+            margin-bottom: 20px;
+            font-size: 0.9rem; /* Star size set smaller */
+        }
+        .highlight {
+            margin-top: 20px;
+            padding: 10px; /* Reduced padding */
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem; /* Smaller text size in highlights */
+        }
+        .highlight i {
+            color: gray;
+            margin-right: 10px;
+            font-size: 0.9rem; /* Smaller icon size */
+        }
+        .highlight p {
+            color: gray;
+            margin-bottom: 10px;
+        }
+        /* Reservation Summary */
+        .reservation-summary {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px; /* Reduced padding */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem; /* Smaller text size */
+        }
+        .reservation-summary h3 {
+            font-size: 1.2rem; /* Heading text size set smaller */
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .reservation-summary p {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .reservation-summary .price {
+            font-weight: bold;
+            font-size: 1.2rem; /* Price text size set smaller */
+            color: #ff5a5f;
+            margin-bottom: 20px;
+        }
+        .reservation-summary .details {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 10px;
+        }
+        .reservation-summary .total {
+            font-weight: bold;
+            font-size: 1.1rem; /* Total text size set smaller */
+            color: #333;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .reservation-summary .reserve-button {
+            background-color: #ff5a5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px; /* Reduced padding */
+            width: 100%;
+            font-size: 0.9rem; /* Button text size set smaller */
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .reservation-summary input[type="date"],
+        .reservation-summary input[type="number"] {
+            width: 100%;
+            padding: 6px; /* Reduced padding */
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem; /* Input text size set smaller */
+            color: gray;
+        }
+        /* Amenities Section */
+        .amenities-section {
+            margin-top: 40px;
+        }
+        .amenities-section h2 {
+            font-size: 1.5rem;
+            color: gray; /* Amenities heading color set to gray */
+            margin-bottom: 20px;
+        }
+        .amenities-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px; /* Added more space between items */
+            color: gray; /* Amenities text color set to gray */
+        }
+        .amenities-list i {
+            margin-right: 10px;
+            color: gray; /* Amenities icon color set to gray */
+        }
+        .amenities-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+    <body>
+        <div class="container">
+            <div class="main-content">
+                <div class="left-column">
+                    <!-- Display main image -->
+                    <img src="@Model.ImagePath1" alt="Room Image" class="main-image">
+
+                    <div class="thumbnail-container">
+                        <!-- Display thumbnails -->
+                        @if (!string.IsNullOrEmpty(Model.ImagePath2))
+                        {
+                                <img src="@Model.ImagePath2" alt="Thumbnail 2" class="thumbnail">
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ImagePath3))
+                        {
+                                <img src="@Model.ImagePath3" alt="Thumbnail 3" class="thumbnail">
+                        }
+                        @if (!string.IsNullOrEmpty(Model.ImagePath4))
+                        {
+                                <img src="@Model.ImagePath4" alt="Thumbnail 4" class="thumbnail">
+                        }
+                    </div>
+
+                    <div class="room-info">
+                        <h1>@Model.TypeName in @Model.FeatureName</h1>
+                        <p>@ViewBag.Guests guests • 1 bedroom • 1 bed • 1 bath</p> 
+                    </div>
+
+                    <div class="room-rate">
+                        Price: @Model.RoomRate PHP per @Model.HourType hour
+                    </div>
+
+                    <!-- 5-Star Rating -->
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+
+                    <!-- Highlights Section -->
+                    <div class="highlight">
+                        <p><i class="fas fa-medal"></i> <strong>Eduardo Santander is a Superhost</strong></p>
+                        <p>Superhosts are experienced, highly rated Hosts.</p>
+                    </div>
+                    <div class="highlight">
+                        <p><i class="fas fa-key"></i> <strong>Great check-in experience</strong></p>
+                        <p>100% of recent guests gave the check-in process a 5-star rating.</p>
+                    </div>
+                    <div class="highlight">
+                        <p><i class="fas fa-parking"></i> <strong>Park for free</strong></p>
+                        <p>This is one of the few places in the area with free parking.</p>
+                    </div>
+
+                    <!-- Amenities Section -->
+                    <div class="amenities-section">
+                        <h2>What this place offers</h2>
+                        <div class="amenities-list">
+                            <div class="amenities-item">
+                                <i class="fas fa-tree"></i> Garden view
+                            </div>
+                            <div class="amenities-item">
+                                <i class="fas fa-wifi"></i> Wifi
+                            </div>
+                            <div class="amenities-item">
+                                <i class="fas fa-door-open"></i> Private patio or balcony
+                            </div>
+                            <div class="amenities-item">
+                                <i class="fas fa-car"></i> Free parking on premises
+                            </div>
+                            <div class="amenities-item">
+                                <i class="fas fa-snowflake"></i> Air conditioning
+                            </div>
+                            <div class="amenities-item">
+                                <i class="fas fa-video"></i> Exterior security cameras on property
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="reservation-summary">
+                        @* <h3>@Model.RoomRate PHP per @Model.HourType hour</h3> *@
+
+                        
+
+                        <form asp-action="Register" asp-controller="Reservation" method="post">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" class="form-control" value="@ViewBag.Location" readonly />
+                            </div>
+
+                            <label for="checkin">Check-in</label>
+                            <input type="date" id="checkInDate" name="checkInDate" value="@ViewBag.CheckInDate.ToString("yyyy-MM-dd")">
+
+                            <label for="checkout">Check-out</label>
+                            <input type="date" id="checkOutDate" name="checkOutDate" value="@ViewBag.CheckOutDate.ToString("yyyy-MM-dd")">
+
+                            <label for="guests">Guests</label>
+                            <input type="number" id="guests" name="guests" value="@ViewBag.Guests" min="1" max="20">
+
+                            <div class="form-group">
+                                <label for="hourType">Hour Type</label>
+                                <select id="hourType" name="hourType" class="form-control" required style="height: 30px; font-size: 14px;">
+                                    <option value="6">6</option>
+                                    <option value="12" selected>12</option>
+                                    <option value="24">24</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="control-label"></label>
+                                <span class="text-danger">*</span>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="LastName" class="control-label"></label>
+                                <span class="text-danger">*</span>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ContactNo" class="control-label"></label>
+                                <span class="text-danger">*</span>
+                                <input asp-for="ContactNo" class="form-control" />
+                                <span asp-validation-for="ContactNo" class="text-danger"></span>
+                            </div>
+
+                            <input type="hidden" name="Location" value="@ViewBag.Location" />       
+                            <input type="hidden" name="checkInDate" value="@ViewBag.CheckInDate.ToString("yyyy-MM-dd")" />
+                            <input type="hidden" name="checkOutDate" value="@ViewBag.CheckOutDate.ToString("yyyy-MM-dd")" />
+                            <input type="hidden" name="guests" value="@ViewBag.Guests" />
+                            <input type="hidden" name="Location" value="@ViewBag.Location" />
+                            <input type="hidden" name="FeatureName" value="@Model.FeatureName" />
+                            <input type="hidden" name="TypeName" value="@Model.TypeName" />
+                            <input type="hidden" name="HourType" id="hiddenHourType" value="@Model.HourType" />
+                            <input type="hidden" name="ImagePath1" value="@Model.ImagePath1" />
+                            <input type="hidden" name="ImagePath2" value="@Model.ImagePath2" />
+                            <input type="hidden" name="ImagePath3" value="@Model.ImagePath3" />
+                            <input type="hidden" name="ImagePath4" value="@Model.ImagePath4" />
+                            <input type="hidden" name="Description" value="@Model.Description" />
+
+                            <!-- Add more hidden fields as necessary -->
+                            <form asp-action="Register" asp-controller="Reservation" method="post">
+                                <!-- Other hidden fields here -->
+                                <button type="submit" class="reserve-button btn btn-primary" style="width: 280px;">
+                                    Reserve
+                                </button>
+                                <a href="@Url.Action("Search", "Room", new {checkInDate = ViewBag.CheckInDate.ToString("yyyy-MM-dd"), checkOutDate = ViewBag.CheckOutDate.ToString("yyyy-MM-dd"), guests = ViewBag.Guests, location = ViewBag.location })" class="btn btn-secondary" style="margin-top: 10px; width: 280px;">
+                                    Return to Room Availability
+                                </a>
+                            </form>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $('#hourType').change(function () {
+            var selectedHourType = $(this).val();
+            var featureName = '@Model.FeatureName';
+            var typeName = '@Model.TypeName';
+
+            // Update the hidden input for HourType
+            $('#hiddenHourType').val(selectedHourType);
+
+            $.ajax({
+                url: '@Url.Action("GetRoomRate", "Room")',
+                type: 'GET',
+                data: {
+                    featureName: featureName,
+                    typeName: typeName,
+                    hourType: selectedHourType
+                },
+                success: function (rate) {
+                    $('.room-rate').text('Price: ' + rate + ' PHP per ' + selectedHourType + ' hour');
+                },
+                error: function () {
+                    alert('Failed to retrieve room rate.');
+                }
+            });
+        });
+    });
+</script>

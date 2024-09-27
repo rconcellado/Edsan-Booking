@@ -1,0 +1,80 @@
+﻿@model EdsanBooking.Models.Room
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Edit Room - @Model.RoomId</h2>
+
+        <form asp-action="Edit" method="post">
+            <div class="form-group">
+                <label asp-for="RoomId">Room ID</label>
+                <input asp-for="RoomId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Descr">Description</label>
+                <input asp-for="Descr" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureName">Feature Name</label>
+                <select asp-for="FeatureName" class="form-control">
+                <option value="AC">AC</option>
+                <option value="Ceiling Fan">Ceiling Fan</option>
+                <option value="N/A">N/A</option>
+                </select>
+                <span asp-validation-for="FeatureName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeName">Type Name</label>
+                <select asp-for="TypeName" class="form-control">
+                    <option value="Single">Single</option>
+                    <option value="Double">Double</option>
+                    <option value="Suite">Suite</option>
+                    <option value="N/A">N/A</option>
+                </select>
+                <span asp-validation-for="TypeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusName">Room Status</label>
+                <select asp-for="StatusName" class="form-control">
+                    <option value="Available">Available</option>
+                    <option value="Occupied">Occupied</option>
+                    <option value="Maintenance">Maintenance</option>
+                </select>
+                <span asp-validation-for="StatusName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HourType">Hour Type</label>
+                <select asp-for="HourType" class="form-control">
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select>
+                <span asp-validation-for="HourType" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="RoomRate">Room Rate</label>
+                <input asp-for="RoomRate" class="form-control" />
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Classification"></label>
+                <select asp-for="Classification" class="form-control">
+                    <option value="Resort">Resort</option>
+                    <option value="Transient">Transient</option>
+                </select>
+                <span asp-validation-for="Classification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks"></label>
+                <input asp-for="Remarks" class="form-control" />
+            </div>
+             <!-- Location Field -->
+            <div class="form-group">
+                <label asp-for="Location"></label>
+                <input asp-for="Location" class="form-control" readonly />
+            </div>
+            <button type="submit" class="btn btn-primary btn-margin">Save</button>
+        </form>
+    </div>
+</div>

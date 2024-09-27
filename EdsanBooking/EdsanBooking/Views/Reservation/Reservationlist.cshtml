@@ -1,0 +1,152 @@
+﻿@model PaginatedListViewModel<ReservationViewModel>
+@using EdsanBooking.Utilities;
+
+<a href="@Url.Action("AddOrEdit", "Reservation")" class="btn btn-success mb-3">
+    <i class="fas fa-plus"></i> Add Reservation
+</a>
+
+<!-- Search Form -->
+<form method="get" asp-action="Reservationlist" class="form-inline mb-4">
+    <div class="input-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search Reservation" value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+@{
+    var location = ViewContext.HttpContext.Session.GetString("Location");
+}
+
+<h2>Reservation List for Location: @location</h2>
+
+<style>
+    .small-font-table th, .small-font-table td {
+        font-size: 12px; /* Adjust the size as needed */
+        text-align: left;
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .small-font-table th {
+        background-color: #f8f9fa; /* Optional: Light background for headers */
+        border-bottom: 2px solid #dee2e6; /* Adds a thicker bottom border for headers */
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 5px; /* Adds some space between the buttons */
+    }
+</style>
+
+<table class="table table-striped small-font-table">
+    <thead>
+        <tr>
+            <th style="width: 5%;">ID</th>
+            <th style="width: 10%;">Guest ID</th>
+            <th style="width: 15%;">Guest Name</th>
+            <th style="width: 5%;">Guest No</th>
+            <th style="width: 10%;">CheckIn Date</th>
+            <th style="width: 10%;">CheckIn Time</th>
+            <th style="width: 10%;">CheckOut Date</th>
+            <th style="width: 10%;">CheckOut Time</th>
+            <th style="width: 10%;">Status</th>
+            <th style="width: 10%;">Type</th>
+            <th style="width: 15%;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.Items)
+        {
+            <tr>
+                <td>@reservation.ReservationId</td>
+                <td>@reservation.GuestId</td>
+                <td>
+                    @if (reservation.Company == "Not applicable")
+                    {
+                        @(reservation.FirstName + " " + reservation.LastName)
+                    }
+                    else if (reservation.Company != "Not applicable")
+                    {
+                        @reservation.Company
+                    }
+                    else
+                    {
+                        <span>N/A</span>
+                    }
+                </td>
+                <td>@reservation.NumGuest</td>
+                <td>@reservation.CheckInDt.ToShortDateString()</td>
+                <td>@reservation.CheckInTime</td>
+                <td>@reservation.CheckOutDt.ToShortDateString()</td>
+                <td>@reservation.CheckOutTime</td>
+                <td>@reservation.Status</td>
+                <td>@reservation.ReservationType</td>
+                <td>
+                    <div class="action-buttons">
+                        <a href="@Url.Action("Details", "Pool", new { id = reservation.ReservationId })" class="btn btn-outline-primary btn-sm">
+                            Details
+                        </a>
+                        @if (reservation.Status != "Confirmed")
+                        {
+                            <a href="@Url.Action("AddOrEdit", "Reservation", new { id = reservation.ReservationId })" class="btn btn-outline-primary btn-sm">
+                                Edit
+                            </a>
+
+                            @if (reservation.ReservationType == "Transient")
+                            {
+                                <form asp-action="ConfirmTransientReservation" asp-controller="Reservation" method="post" style="display:inline;" onsubmit="return confirmReservation();">
+                                    <input type="hidden" name="id" value="@reservation.ReservationId" />
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                        Confirm
+                                    </button>
+                                </form>
+                            }
+                            else if (reservation.ReservationType == "Resort")
+                            {
+                                <form asp-action="ConfirmResortReservation" asp-controller="Reservation" method="post" style="display:inline;" onsubmit="return confirmReservation();">
+                                    <input type="hidden" name="id" value="@reservation.ReservationId" />
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                        Confirm
+                                    </button>
+                                </form>
+                            }
+
+                            <a href="@Url.Action("Cancel", "Cancel", new { id = reservation.ReservationId })" class="btn btn-outline-secondary btn-sm">
+                                Cancel
+                            </a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function confirmReservation() {
+        return confirm("Are you sure you want to confirm this reservation?");
+    }
+</script>
+
+
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Reservationlist", new { pageNumber = Model.PageNumber - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+                        <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Reservationlist", new { pageNumber = i })">@i</a>
+                        </li>
+        }
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Reservationlist", new { pageNumber = Model.PageNumber + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

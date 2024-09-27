@@ -1,0 +1,81 @@
+﻿@model PaginatedListViewModel<RoomViewModel>
+
+<a href="@Url.Action("Create", "Room")" class="btn btn-success mb-3">
+    <i class="fas fa-plus"></i> Add Room
+</a>
+
+<!-- Search Form -->
+<form method="get" asp-action="Roomlist" class="form-inline mb-4">
+    <div class="input-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search Rooms" value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<h2>Room List</h2>
+
+<style>
+    .small-font-table th, .small-font-table td {
+        font-size: 12px; /* Adjust the size as needed */
+    }
+</style>
+
+<table class="table table-striped small-font-table">
+    <thead>
+        <tr>
+            <th>Room ID</th>
+            <th>Description</th>
+            <th>Feature Name</th>
+            <th>Type Name</th>
+            <th>Hour Type</th>
+            @* <th>Room Rate</th> *@
+            <th>Room Status</th>
+            <th>Classification</th> <!-- Added Classification column -->
+            <th>Remarks</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model.Items)
+        {
+                <tr>
+                    <td>@room.RoomId</td>
+                    <td>@room.Descr</td>
+                    <td>@room.FeatureName</td>
+                    <td>@room.TypeName</td>
+                    <td>@room.HourType</td>
+                    @* <td>@room.RoomRate.ToString("C")</td> *@
+                    <td>@room.StatusName</td>
+                    <td>@room.Classification</td> <!-- Display Classification -->
+                    <td>@room.Remarks</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Room", new { id = room.RoomId })" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-edit"></i> <!-- FontAwesome Edit Icon -->
+                        </a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Roomlist", new { pageNumber = Model.PageNumber - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+                <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Roomlist", new { pageNumber = i })">@i</a>
+                </li>
+        }
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Roomlist", new { pageNumber = Model.PageNumber + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

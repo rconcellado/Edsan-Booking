@@ -1,0 +1,62 @@
+﻿@* <style>
+    .form-control {
+        height: 33px; /* Makes the textboxes shorter */
+        font-size: 11px;
+    }
+</style> *@
+
+<div class="modal fade" id="roomSearchModal" tabindex="-1" aria-labelledby="roomSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="roomSearchModalLabel">Room Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Room search form -->
+                <div id="roomSearchForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="featureName" class="form-label">Feature Name</label>
+                            <select id="featureName" class="form-control">
+                                <option value="">Select Feature</option>
+                                <option value="Aircon">Aircon</option>
+                                <option value="Ceiling Fan">Ceiling Fan</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="typeName" class="form-label">Type Name</label>
+                            <select id="typeName" class="form-control">
+                                <option value="">Select Type</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="hourType" class="form-label">Hour Type</label>
+                            <input type="number" id="hourType" class="form-control" min="1" max="24" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="classification" class="form-label">Classification</label>
+                            <input type="text" id="classification" class="form-control" value="Transient" readonly />
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="loadRooms(1)">Search</button>
+                </div>
+
+                <hr />
+
+                <!-- Room search results -->
+                <div id="roomResults">
+                    <!-- Room search results will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

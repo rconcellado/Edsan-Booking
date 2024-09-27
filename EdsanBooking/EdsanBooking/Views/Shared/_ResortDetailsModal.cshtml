@@ -1,0 +1,42 @@
+﻿<div class="modal fade" id="resortDetailsModal" tabindex="-1" aria-labelledby="resortDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resortDetailsModalLabel">Resort Package Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Package Details for Resort -->
+                <div>
+                    <div class="form-group">
+                        <label for="packageName">Package Name</label>
+                        <select id="packageName" class="form-control">
+                            @foreach (var pkg in ViewBag.ResortPackages)
+                            {
+                                    <option value="@pkg.PackageId">@pkg.Descr</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="packageDescription">Package Description</label>
+                        <textarea id="packageDescription" class="form-control" readonly></textarea>
+                    </div>
+                </div>
+                <button type="button" id="addResortDetailToReservation" class="btn btn-primary mt-2">Add Detail</button>
+                <hr />
+                <!-- List of added details -->
+                <div>
+                    <h5>Added Details:</h5>
+                    <ul id="addedResortDetailsList" class="list-group">
+                        <!-- Added details will be displayed here -->
+                    </ul>
+                </div>
+                <!-- Hidden inputs container -->
+                <div id="addedDetailsHiddenInputs"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

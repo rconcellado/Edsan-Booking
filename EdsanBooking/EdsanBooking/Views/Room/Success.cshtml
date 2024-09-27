@@ -1,0 +1,16 @@
+﻿@model RoomImagesViewModel
+
+@{
+    ViewData["Title"] = "Room Images";
+}
+
+<h2>Room Images</h2>
+
+<div class="row">
+    @foreach (var imagePath in Model.ImagePaths)
+    {
+            <div class="col-md-3">
+                <img src="@imagePath" alt="Room Image" class="img-fluid" style="max-width:100%; height:auto; margin-bottom:15px;" />
+            </div>
+    }
+</div>

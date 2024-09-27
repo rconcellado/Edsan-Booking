@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edsan Transient House and Inland Resort Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #6e1c94;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            margin: 10px 0 0 0;
+        }
+
+        /* Search Bar styles */
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 1000px;
+            width: 80%;
+            margin: 30px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-bar div {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+            border-right: 1px solid #ddd;
+        }
+
+        .search-bar div:last-child {
+            border-right: none;
+        }
+
+        .search-bar label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .search-bar select,
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .search-bar select::placeholder,
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .search-bar button {
+            background-color: #FF5A5F;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .search-bar button i {
+            font-size: 1.2rem;
+        }
+
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        ul {
+            padding-left: 0; /* Remove default padding */
+            list-style-type: none; /* Remove default bullets */
+        }
+
+        li::before {
+            content: "\2022"; /* Unicode for bullet point */
+            color: #333; /* Bullet color */
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em; /* Adjust width to control distance between bullet and text */
+            margin-left: -1em; /* Adjust margin to move bullet closer to text */
+        }
+
+        li {
+            margin-bottom: 10px; /* Adjust space between list items */
+        }
+
+        .branches {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .contact {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .contact p {
+            margin: 5px 0 0 0;
+            font-size: 1rem;
+        }
+
+        /* Responsive Styles */
+        @@media (max-width: 768px) {
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px;
+                width: 90%;
+            }
+
+            .search-bar div {
+                padding: 10px 0;
+                border-right: none;
+            }
+
+            .search-bar select,
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-bar button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>EDSAN</h1>
+        <h2>TRANSIENT HOUSE AND RESORT MANAGEMENT SYSTEM</h2>
+    </div>
+
+    <!-- Search Bar -->
+    <form asp-action="Search" asp-controller="Room" method="post">
+        <div class="search-bar">
+            <div>
+                <label for="location">Where</label>
+                <select id="location" name="location">
+                    <option value="Champaca">Champaca</option>
+                    <option value="Mati">Mati</option>
+                    <option value="Pantukan">Pantukan</option>
+                    <option value="Tacunan">Tacunan</option>
+                </select>
+            </div>
+            @{
+                var today = DateTime.Now;
+                var tomorrow = today.AddDays(1);
+            }
+
+            <div>
+                <label for="checkin">Check in</label>
+                <input type="date" id="checkin" name="checkInDate" value="@today.ToString("yyyy-MM-dd")" placeholder="Add dates">
+            </div>
+            <div>
+                <label for="checkout">Check out</label>
+                <input type="date" id="checkout" name="checkOutDate" value="@tomorrow.ToString("yyyy-MM-dd")" placeholder="Add dates">
+            </div>
+            <div>
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" name="guests" value="2" min="1" max="20" class="form-control" style="height: 30px; font-size: 14px;">
+            </div>
+
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <!-- Content Section -->
+    <div class="content">
+        <p>
+            Edsan Transient House and Inland Resort Management System is a comprehensive platform designed to streamline operations.
+        </p>
+        <p>
+            It offers an intuitive interface for:
+            <ul>
+                <li>Managing room bookings.</li>
+                <li>Handling guest check-ins.</li>
+                <li>Processing payments.</li>
+                <li>Managing resort amenities.</li>
+            </ul>
+        </p>
+        <p>
+            The system is tailored to meet the unique needs of both small and large hospitality businesses.
+        </p>
+        <p>
+            Ensures efficient management and an enhanced guest experience.
+        </p>
+        <p>
+            Provides tools to manage your property with ease and professionalism, whether handling daily operations or optimizing service offerings.
+        </p>
+
+        <div class="branches">
+            <strong>Branches:</strong> Champaca • Mati • Pantukan • Tacunan
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+        <h3>Contact below:</h3>
+        <p>Eduardo Santander/09326068646</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - EdsanBooking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="~/icons8-home-94.png" />
+    <style>
+        /* Ensure the background covers the entire viewport */
+        .full-width-background {
+            background-image: url('/images/resort-bg.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-custom {
+            flex: 1;
+        }
+
+        /* Style for the top-right corner icons and links */
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555; /* Dark gray color */
+        }
+
+        .menu-item a {
+            color: #555; /* Dark gray color */
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer; /* Add pointer cursor */
+        }
+
+        .menu-item a:hover {
+            color: #333; /* Slightly darker gray on hover */
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #555; /* Dark gray color for other nav elements */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #333; /* Slightly darker gray on hover */
+        }
+
+        /* Center the "Home" menu item */
+        .center-nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="full-width-background">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">EdsanBooking</a>
+                
+                <div class="navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        @{
+                            var location = ViewContext.HttpContext.Session.GetString("Location");
+                            var fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("yyyy-MM-dd");
+                            var toDate = DateTime.Now.ToString("yyyy-MM-dd");
+                            var userRole = ViewContext.HttpContext.Session.GetString("UserRole");
+                        }
+
+                        @* @if (userRole == "Guest")
+                        {
+                            <!-- Center the "Home" menu item -->
+                        <ul class="navbar-nav center-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Rooms</a>
+                            </li>
+                        <!-- Center the "Home" menu item -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Amenities</a>
+                            </li>
+                        <!-- Center the "Home" menu item -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Gallery</a>
+                            </li>
+                        </ul>
+                        }  *@
+                        
+
+                        @if (userRole == "Admin" || userRole == "User")
+                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Summary", "Dashboard")">Dashboard</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Guestlist", "Guest")">Guest</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Roomlist", "Room")">Room</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Reservationlist", "Reservation")">Reservation</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("CheckInlist", "CheckIn")">CheckIn</a>
+                                            </li>
+                        }
+
+                        @if (userRole == "Admin")
+                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="settingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Setting
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="settingDropdown">
+                                                    <li><a class="dropdown-item" href="@Url.Action("RoomRatesList", "Setting")">Room Rates</a></li>
+                                                    <li><a class="dropdown-item" href="@Url.Action("Privacy", "Home")">Privacy</a></li>
+                                                </ul>
+                                            </li>
+                        }
+                        @if (userRole == "Admin" || userRole == "User")
+                        {
+                                        <!-- Logout button, always visible -->
+                                        <li class="nav-item">
+                                                <form asp-action="Logout" asp-controller="Account" method="post" id="logoutForm" style="display:inline;">
+                                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                                </form>
+                                        </li>
+                        }
+                        @if (userRole == "Guest")
+                        {
+                            <!-- Highlighted and bolded Logout button for Guest with icon -->
+                            <div style="font-weight: bold; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+                                <form asp-action="Logout" asp-controller="Account" method="post" id="logoutForm" style="display:inline;">
+                                    <button type="submit" class="btn btn-link nav-link" style="color: #ff5a5f; font-size: 18px; font-weight: bold; text-decoration: none;">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </button>
+                                </form>
+                            </div>
+                        }
+                    </ul>
+
+                    <!-- Icons and login/signup links aligned to the right -->
+                    @{
+                        var userLoggedIn = Context.Session.GetString("UserLoggedIn");
+                    }
+
+                    <div class="d-flex ms-auto icons">
+                    @if (userLoggedIn != "true")
+                    {
+                        <!-- User is not authenticated; show login and signup links -->
+                        <div class="menu-item">
+                            <i class="fas fa-user"></i>
+                            <a data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
+                            @* <a data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a> *@
+                        </div>
+                    }
+                    </div>
+
+                    @if (userRole == "Admin" || userRole == "User")
+                    {
+                        <span class="navbar-text ms-3">
+                            @if (ViewContext.HttpContext.Session.GetString("Username") != null)
+                            {
+                                <text>Logged in as @ViewContext.HttpContext.Session.GetString("Username") (@ViewContext.HttpContext.Session.GetString("Location"))</text>
+                            }
+                        </span>
+                    }
+
+                    @if (userRole == "Guest")
+                    {
+                     <span class="navbar-text ms-3">
+                            <text>Welcome @ViewContext.HttpContext.Session.GetString("FirstName") @ViewContext.HttpContext.Session.GetString("LastName") (@ViewContext.HttpContext.Session.GetString("Location"))</text>                        
+                     </span>
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-custom">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            <script>
+                                setTimeout(function () {
+                                    var alert = document.querySelector('.alert');
+                                    if (alert) {
+                                        alert.classList.remove('show');
+                                    }
+                                }, 3000);
+                            </script>
+            }
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content small-font">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel" style="font-size: 16px;">Log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="Login" asp-controller="Account" method="post">
+                        <div class="form-group">
+                            <label for="login-location">Location</label>
+                            <select id="login-location" name="Location" class="form-control" required style="height: 30px; font-size: 14px;">
+                                <option value="" disabled selected>Select your location</option>
+                                <option value="Champaca">Champaca</option>
+                                <option value="Mati">Mati</option>
+                                <option value="Pantukan">Pantukan</option>
+                                <option value="Upper Mintal">Upper Mintal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-usertype">User Type</label>
+                            <select id="login-usertype" name="UserType" class="form-control" required style="height: 30px; font-size: 14px;">
+                                <option value="" disabled selected>Select user type</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                                @* <option value="Guest">Guest</option> *@
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" name="Username" class="form-control" placeholder="Enter your username" required style="height: 30px; font-size: 14px;" />
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="Password" class="form-control" placeholder="Enter your password" required style="height: 30px; font-size: 14px;" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Sign up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form action and controller specified -->
+                    <form asp-action="Signup" asp-controller="Account" method="post">
+                        <div class="form-group">
+                            <label for="signup-firstname">First Name</label>
+                            <input type="text" id="signup-firstname" name="FirstName" class="form-control" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-lastname">Last Name</label>
+                            <input type="text" id="signup-lastname" name="LastName" class="form-control" placeholder="Enter your last name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-contactno">Contact No.</label>
+                            <input type="text" id="signup-contactno" name="ContactNo" class="form-control" placeholder="Enter your contact number" required>
+                        </div>
+                        @* <div class="form-group">
+                            <label for="signup-address">Address(Optional)</label>
+                            <input type="text" id="signup-address" name="Address" class="form-control" placeholder="Enter your address">
+                        </div> *@
+                        <div class="form-group">
+                            <label for="signup-location">Location</label>
+                            <select id="signup-location" name="Location" class="form-control" required>
+                                <option value="" disabled selected>Select your location</option>
+                                <option value="Champaca">Champaca</option>
+                                <option value="Mati">Mati</option>
+                                <option value="Pantukan">Pantukan</option>
+                                <option value="Upper Mintal">Upper Mintal</option>
+                            </select>
+                        </div>
+                        @* <div class="form-group">
+                            <label for="signup-username">Username</label>
+                            <input type="text" id="signup-username" name="Username" class="form-control" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" name="Password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirmpassword">Confirm Password</label>
+                            <input type="password" id="signup-confirmpassword" name="ConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                        </div> *@
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

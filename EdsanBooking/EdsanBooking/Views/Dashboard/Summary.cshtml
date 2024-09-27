@@ -1,0 +1,183 @@
+﻿@model SummaryViewModel
+
+@{
+    ViewData["Title"] = "Edsan Transient House and Inland Resort Dashboard Summary";
+}
+
+<!-- Centered Title with Space at the Bottom -->
+<h2 class="text-center mb-4">Edsan Transient House and Inland Resort Dashboard Summary</h2>
+
+<!-- Form to filter the summary -->
+<form asp-action="FilterSummary" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="fromDate">From Date:</label>
+                <input type="date" class="form-control" id="fromDate" name="fromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="toDate">To Date:</label>
+                <input type="date" class="form-control" id="toDate" name="toDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" value="@Model.Location" readonly />
+            </div>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
+</form>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Column for Vertical Cards -->
+        <div class="col-md-4">
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #28a745; height: 70px;">
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Check-In:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.TotalBookings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #ff8800; height: 70px;">
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Check-Out:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.TotalCheckOut</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #007bff; height: 70px;">
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Reserved:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.TotalReservations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #ff0044; height: 70px;">
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Guest Count:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.TotalGuests</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #00cc44; height: 70px;"> <!-- Green for Available Rooms -->
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Available Rooms:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.AvailableRooms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #0066cc; height: 70px;"> <!-- Blue for Occupied Rooms -->
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Occupied Rooms:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.OccupiedRooms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-12">
+                    <div class="card" style="background-color: #ffc107; height: 70px;"> <!-- Yellow for Maintenance Rooms -->
+                        <div class="card-body text-center d-flex justify-content-between align-items-center" style="padding: 0.5rem;">
+                            <h6 class="card-title" style="color: white; margin: 0; font-size: 0.9rem;">Maintenance Rooms:</h6>
+                            <p class="font-weight-bold" style="color: white; margin: 0; font-size: 1.5rem;">@Model.MaintenanceRooms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column for Smaller Cartesian Chart -->
+        <div class="col-md-4"> <!-- Reduced width from 8 to 4 -->
+            <canvas id="revenueChart" width="1000" height="500"></canvas> <!-- Reduced canvas size -->
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('revenueChart').getContext('2d');
+    var revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.RevenueStatistics.Select(r => r.Date.ToString("yyyy-MM-dd")))),
+            datasets: [{
+                label: 'Revenue',
+                data: @Html.Raw(Json.Serialize(Model.RevenueStatistics.Select(r => r.TotalRevenue))),
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,  // Adjust aspect ratio for smaller chart size
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Revenue (₱)' // Add Peso symbol to y-axis title
+                    },
+                    beginAtZero: true,
+                    ticks: {
+                        // Add peso sign to each y-axis tick
+                        callback: function(value, index, values) {
+                            return '₱' + value.toLocaleString();
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        // Add peso sign to tooltip
+                        label: function(tooltipItem) {
+                            return '₱' + tooltipItem.formattedValue.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

@@ -1,0 +1,48 @@
+﻿@model dynamic
+
+<div class="modal fade" id="@Model.Id" tabindex="-1" aria-labelledby="@Model.Id + 'Label'" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="@Model.Id + 'Label'">@Model.Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="featureName">Feature Name</label>
+                    <select id="featureName" name="featureName" class="form-control">
+                        <option value="1">Aircon</option>
+                        <option value="2">Ceiling Fan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="typeName">Type Name</label>
+                    <select id="typeName" name="typeName" class="form-control">
+                        <option value="1">Single</option>
+                        <option value="2">Double</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hourType">Hour Type</label>
+                    <select id="hourType" name="hourType" class="form-control">
+                        <option value="6">6</option>
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary mt-2 add-detail-btn" data-modal-id="@Model.Id">Add Detail</button>
+                <hr />
+                <!-- List of added details -->
+                <div>
+                    <h5>Added Details:</h5>
+                    <ul id="addedDetailsList-@Model.Id" class="list-group">
+                        <!-- Added details will be displayed here -->
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

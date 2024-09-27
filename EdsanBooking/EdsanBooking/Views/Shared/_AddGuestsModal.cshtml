@@ -1,0 +1,59 @@
+﻿@model dynamic
+
+<div class="modal fade" id="addGuestsModal" tabindex="-1" aria-labelledby="addGuestsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addGuestsModalLabel">Add Guests</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Search input for adding guests -->
+                <div class="form-group">
+                    <label for="searchGuestAddModal">Search Guest</label>
+                    <input type="text" id="searchGuestAddModal" class="form-control mb-3" placeholder="Search for a guest...">
+                </div>
+
+                <!-- Table to display search results -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Guest ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Company</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody id="addGuestSearchResults">
+                        <!-- Search results will be dynamically inserted here -->
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <label for="selectedGuestId">Selected Guest ID</label>
+                    <input type="text" id="comResGuestId" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="preference">Preference</label>
+                    <select id="preference" class="form-control">
+                        <option value="Solo">Solo</option>
+                        <option value="Shared">Shared</option>
+                    </select>
+                </div>
+                <button type="button" id="addGuestToReservation" class="btn btn-primary mt-2">Add Guest</button>
+                <hr />
+                <!-- List of added guests -->
+                <div>
+                    <h5>Added Guests:</h5>
+                    <ul id="addedGuestsList" class="list-group">
+                        <!-- Added guests will be displayed here -->
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

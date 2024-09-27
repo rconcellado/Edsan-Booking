@@ -1,0 +1,46 @@
+﻿@model EdsanBooking.Models.Guest
+
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Create Guest</h2>
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="GuestId">Guest ID</label>
+                    <input asp-for="GuestId" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GName">First Name</label>
+                    <input asp-for="GName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="LName">Last Name</label>
+                    <input asp-for="LName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company">Company</label>
+                    <input asp-for="Company" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNo">Contact Number</label>
+                    <input asp-for="ContactNo" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address">Address</label>
+                    <input asp-for="Address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="GuestType">Guest Type</label>
+                    <select asp-for="GuestType" class="form-control">
+                        <option value="Individual">Individual</option>
+                        <option value="Company">Company</option>
+                    </select>
+                    <span asp-validation-for="GuestType" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-margin">Save</button>
+            </form>
+    </div>
+</div>

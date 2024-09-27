@@ -1,0 +1,65 @@
+﻿@model EdsanBooking.Models.Room
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/css/custom/custom-form-styles.css" />
+
+<div class="form-container">
+    <div class="form-box">
+        <h2>Create Room</h2>
+
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="RoomId"></label>
+                <input asp-for="RoomId" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Descr"></label>
+                <input asp-for="Descr" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureName"></label>
+                <select asp-for="FeatureName" class="form-control" asp-items="ViewBag.RoomFeatures"></select>
+                <span asp-validation-for="FeatureName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeName"></label>
+                <select asp-for="TypeName" class="form-control" asp-items="ViewBag.RoomTypes"></select>
+                <span asp-validation-for="TypeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusName"></label>
+                <select asp-for="StatusName" class="form-control" asp-items="ViewBag.RoomStatuses"></select>
+                <span asp-validation-for="StatusName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HourType"></label>
+                <select asp-for="HourType" class="form-control">
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="RoomRate"></label>
+                <input asp-for="RoomRate" class="form-control" />
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Classification"></label>
+                <select asp-for="Classification" class="form-control">
+                    <option value="Resort">Resort</option>
+                    <option value="Transient">Transient</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks"></label>
+                <input asp-for="Remarks" class="form-control" />
+            </div>
+            <!-- Location Field -->
+            <div class="form-group">
+                <label asp-for="Location"></label>
+                <input asp-for="Location" class="form-control" readonly />
+            </div>
+            <button type="submit" class="btn btn-primary btn-margin">Save</button>
+        </form>
+    </div>
+</div>

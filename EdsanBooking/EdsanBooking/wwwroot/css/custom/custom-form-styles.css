@@ -1,0 +1,30 @@
+﻿/* custom-form-styles.css */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Adjusts the height to center vertically */
+}
+
+.form-box {
+    width: 50%; /* Controls the width of the entire form */
+    max-width: 500px; /* Ensures the form doesn't get too wide */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.form-control {
+    height: 35px; /* Makes the textboxes shorter */
+    font-size: 11px;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+.btn-margin {
+    margin-top: 20px; /* Adjust the spacing as needed */
+}

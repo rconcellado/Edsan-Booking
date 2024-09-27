@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Availability</title>
+    <!-- Include the Roboto font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            /* Light background for better contrast */
+        }
+
+        h2 {
+            font-weight: 700;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .intro {
+            text-align: center;
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            padding: 0 15px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            /* Centers the intro text */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            max-width: 100%; /* Ensures the card stays within its container */
+        }
+
+        .card-img-top {
+            border-radius: 10px;
+            width: 100%;
+            height: 200px;
+            /* Smaller height */
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .list-unstyled li {
+            color: gray;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .stars {
+            color: #FFD700;
+            /* Gold color for stars */
+            margin-top: 10px;
+        }
+
+        .description {
+            margin-top: 10px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* Search Bar styles */
+        .search-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 1000px;
+            width: 80%;
+            margin: 30px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-bar div {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+            border-right: 1px solid #ddd;
+            flex: 1;
+        }
+
+        .search-bar div:last-child {
+            border-right: none;
+        }
+
+        .search-bar label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .search-bar select,
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+            padding: 5px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .search-bar select::placeholder,
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .search-bar button {
+            background-color: #FF5A5F;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .search-bar button i {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Styles */
+        @@media (max-width: 768px) {
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px;
+                width: 90%;
+            }
+
+            .search-bar div {
+                padding: 10px 0;
+                border-right: none;
+            }
+
+            .search-bar select,
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-bar button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Room Availability</h2>
+
+    <!-- Display Selected Dates and Number of Guests -->
+    @* <div class="details">
+        <p>Check-in Date: @ViewBag.CheckInDate.ToString("MM/dd/yyyy")</p>
+        <p>Check-out Date: @ViewBag.CheckOutDate.ToString("MM/dd/yyyy")</p>
+        <p>Number of Guests: @ViewBag.Guests</p>
+    </div> *@
+
+    <!-- Search Bar -->
+    <form asp-action="Search" asp-controller="Room" method="post">
+        <div class="search-bar">
+            @* <div>
+                <label for="location">Where</label>
+                <select id="location" name="location">
+                    <option value="Champaca">Champaca</option>
+                    <option value="Mati">Mati</option>
+                    <option value="Pantukan">Pantukan</option>
+                    <option value="Tacunan">Tacunan</option>
+                </select>
+            </div> *@
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="Location" class="form-control" value="@ViewBag.Location" readonly/>
+            </div>
+            <div>
+                <label for="checkInDate">Check in</label>
+                 <input type="date" id="checkInDate" name="checkInDate" value="@ViewBag.CheckInDate.ToString("yyyy-MM-dd")">
+            </div>
+            <div>
+                <label for="checkOutDate">Check out</label>
+                <input type="date" id="checkOutDate" name="checkOutDate" value="@ViewBag.CheckOutDate.ToString("yyyy-MM-dd")">
+            </div>
+            <div>
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" name="guests" value="@ViewBag.Guests" min="1" max="20" class="form-control" style="height: 30px; font-size: 14px;">
+            </div>
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+
+    <p class="intro">
+        Welcome to our room availability section! Here you can find the perfect room for your stay.
+        Simply select your check-in and check-out dates to see the available options.
+        We offer a variety of room types and features to suit your needs, whether you're looking
+        for a cozy retreat or a spacious suite with modern amenities. Explore our options below
+        and book your stay today!
+    </p>
+
+    @if (ViewBag.Message != null)
+    {
+                <p>@ViewBag.Message</p>
+    }
+    else
+    {
+      <div class="container">
+          <div class="row">
+            @foreach (var group in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <!-- Display the image -->
+                        @* <a href="@Url.Action("RoomdetailsGuest", "Room", new { featureName = group.FeatureName, typeName = group.TypeName, hourType = 12 })"> *@
+                        <a href="@Url.Action("RoomdetailsGuest", "Room", new { 
+                                featureName = group.FeatureName, 
+                                typeName = group.TypeName, 
+                                hourType = 12,
+                                checkInDate = ViewBag.CheckInDate.ToString("yyyy-MM-dd"),
+                                checkOutDate = ViewBag.CheckOutDate.ToString("yyyy-MM-dd"),
+                                guests = ViewBag.Guests,
+                                location = ViewBag.location
+                            })">
+                            <img src="@group.ImagePath1" alt="@group.FeatureName @group.TypeName" style="max-width:100%; height:auto;">
+                        </a> 
+                        <!-- Room Details -->
+                        <div class="card-body">
+                            <h5 class="card-title">@group.TypeName in @group.FeatureName</h5>
+
+                            <!-- HourType and RoomRates in Bullet Form -->
+                            <ul class="list-unstyled">
+                            @foreach (var room in group.Rooms)
+                            {
+                                <li>
+                                    <strong>@room.HourType hour:</strong>
+                                    <strong>@room.RoomRates PHP</strong>
+                                    · @room.AvailableRooms rooms available
+                                </li>
+                            }
+                            </ul>
+
+                            <!-- Sample Description -->
+                            <p class="description">This room features modern amenities and comfortable furnishings,
+                                perfect for a relaxing stay.</p>
+
+                            <!-- 5-Star Rating -->
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+          </div>
+      </div>
+    }
+</body>
+
+</html>

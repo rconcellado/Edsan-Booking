@@ -1,0 +1,76 @@
+﻿@model PaginatedListViewModel<RoomRateViewModel>
+
+<a href="@Url.Action("UploadImages", "Room")" class="btn btn-success mb-3">
+    <i class="fas fa-plus"></i> Upload Room Type Picture
+</a>
+
+@{
+    ViewData["Title"] = "Room Rates List";
+    var currentFilter = ViewData["CurrentFilter"] as string;
+}
+
+<h2>Room Rates</h2>
+
+<!-- Search Form -->
+<form asp-action="RoomRatesList" method="get">
+
+    <div class="input-group">
+        <input type="text" name="searchTerm" value="@currentFilter" class="form-control" placeholder="Search by Feature Name or Type Name" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<!-- Room Rates Table -->
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Feature Name</th>
+            <th>Type Name</th>
+            <th>Hour Type</th>
+            <th>Room Rate</th>
+            <th>Classification</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FeatureName</td>
+                    <td>@item.TypeName</td>
+                    <td>@item.HourType</td>
+                        <td>₱@string.Format("{0:N2}", item.RoomRate)</td>
+                    <td>@item.Classification</td>
+                    <td>
+                        <a href="@Url.Action("EditRoomRate", "Setting", new { id = item.Id })" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-edit"></i> <!-- FontAwesome Edit Icon -->
+                        </a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Guestlist", new { pageNumber = Model.PageNumber - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+                        <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Guestlist", new { pageNumber = i })">@i</a>
+                        </li>
+        }
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" href="@Url.Action("Guestlist", new { pageNumber = Model.PageNumber + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
