@@ -19,12 +19,25 @@ It is tailored to meet the unique needs of both small and large hospitality busi
 
 ---
 
-## Features
-- **Room Booking Management**: Easily manage the availability of rooms, allowing guests to check in and check out efficiently.
-- **Guest Management**: Keep track of guest information, preferences, and history, ensuring a personalized experience for repeat guests.
-- **Payment Processing**: Streamlined payment options, supporting multiple payment methods to simplify transactions.
-- **Resort Amenities Management**: Manage resort features like function halls, pool access, and exclusive resort packages.
-- **Multi-Branch Support**: The system is designed to handle multiple branches, ensuring that operations can be scaled across different locations.
+Features
+Guest and Reservation Management
+Add, Edit, and View Reservations: Users can add, edit, or view reservation details including room type, number of guests, and check-in/check-out dates.
+Guest Management: Manage both individual and company guests, including guest information, contact details, and guest types.
+Check-In and Check-Out
+Add, Edit, and View Check-Ins: Users can manage guest check-ins and check-outs easily with intuitive forms.
+Track Reservation Status: Statuses like Pending, Confirmed, CheckOut, and Cancelled are used to keep track of reservations and check-ins.
+Transient and Resort Check-In Types: Differentiate between Transient and Resort guests to better manage their stay duration and services.
+Room and Guest Search
+Search Feature: Users can search for reservations, check-ins, and guests by entering search terms into the provided search box. The system supports dynamic filtering of search results.
+Button Action Management
+Action Buttons: Every reservation and check-in entry includes buttons for quick actions:
+Details: View details of the selected reservation or check-in.
+Edit: Modify an existing reservation or check-in entry.
+Confirm/CheckIn: Confirm or mark a check-in as completed.
+Cancel: Cancel a reservation or check-in.
+CheckOut: Perform guest checkout actions.
+Report and Billing Management (Upcoming)
+Billing System: Processing payments and generating reports (feature in development).
 
 ---
 
@@ -54,16 +67,26 @@ It is tailored to meet the unique needs of both small and large hospitality busi
 ![CheckInList Screenshot](https://github.com/rconcellado/Edsan-Booking/blob/main/2024-09-27%2014_41_36--%20EdsanBooking.png?raw=true)
 
 Usage
-Login:
-The system provides user authentication. Once logged in, users can manage rooms, guest check-ins, and payments.
-Search Rooms:
-Guests can search for rooms based on their preferences, such as the number of guests, room type, and date of stay.
-Booking:
-Users can check room availability, book rooms, and process payments within the application.
-Admin Panel:
-Admin users have access to an overview of bookings, payments, and guest check-ins across all branches.
-Guest Mode:
-The system allows guests to book without logging in.
+Check-In and Check-Out Workflow
+Adding a Reservation:
+
+Navigate to the Reservation page, click Add Reservation, and fill out the necessary details such as the number of guests, room type, and check-in/check-out dates.
+Check-In:
+
+From the CheckIn page, view pending check-ins, and click CheckIn to confirm a guest's arrival.
+The status will change to CheckedIn once confirmed.
+Check-Out:
+
+Once a guest's stay is complete, navigate to the CheckOut button and confirm the checkout. The status will be updated to CheckedOut.
+Viewing Details:
+
+Each reservation and check-in entry provides a Details button for viewing complete information about the guest or the reservation.
+Button Actions
+Details: View the complete details of the selected reservation or check-in.
+Edit: Modify an existing reservation or check-in.
+Confirm/CheckIn: Confirm reservations or mark check-ins as completed.
+Cancel: Cancel the reservation or check-in.
+CheckOut: Complete the guest checkout process.
 
 Contact Information
 Administrator: Eduardo Santander
@@ -72,6 +95,8 @@ Contact Number: 09326068646
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+Contributions
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
 
 ### Key sections:
 - **Overview**: Gives a high-level view of the system and its purpose.
